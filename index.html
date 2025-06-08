@@ -1,47 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Indian ChatGPT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Bikram AI</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    #chatbox { height: 400px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
-    input, button { padding: 10px; width: 80%; margin: 5px 0; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
-  <h2>🤖 Indian ChatGPT</h2>
-  <div id="chatbox"></div>
-  <input id="userInput" placeholder="Apna message likho..." />
-  <button onclick="sendMessage()">Send</button>
-
-  <script>
-    const apiKey = "YOUR_OPENAI_API_KEY";
-
-    async function sendMessage() {
-      const input = document.getElementById("userInput");
-      const chatbox = document.getElementById("chatbox");
-      const userMessage = input.value;
-      chatbox.innerHTML += "<b>You:</b> " + userMessage + "<br>";
-      input.value = "";
-
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: userMessage }]
-        })
-      });
-
-      const data = await response.json();
-      const botReply = data.choices[0].message.content;
-      chatbox.innerHTML += "<b>Bot:</b> " + botReply + "<br>";
-      chatbox.scrollTop = chatbox.scrollHeight;
-    }
-  </script>
+  <h1>Welcome to Bikram AI</h1>
+  <p>This site is live using GitHub Pages 🚀</p>
 </body>
 </html>
