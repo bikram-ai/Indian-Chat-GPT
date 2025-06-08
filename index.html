@@ -6,38 +6,99 @@
   <title>Indian ChatGPT 🇮🇳</title>
   <style>
     body {
-      background: #f0f2f5;
+      background: #f8f9fa;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 50px 20px;
+      padding: 30px 20px;
     }
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: #333;
     }
-    p {
-      font-size: 1.2rem;
-      margin: 20px 0;
+    #chat-box {
+      width: 100%;
+      max-width: 500px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      text-align: left;
     }
-    .btn {
-      background: #0078D7;
-      color: #fff;
-      padding: 15px 25px;
-      border: none;
-      border-radius: 8px;
+    .message {
+      margin: 10px 0;
+    }
+    .user { color: #0078D7; font-weight: bold; }
+    .bot { color: #28a745; font-weight: bold; }
+    input, button {
+      padding: 10px;
       font-size: 1rem;
+      margin-top: 10px;
+      width: 80%;
+      max-width: 400px;
+    }
+    button {
+      width: auto;
+      background: #0078D7;
+      color: white;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
     }
-    .btn:hover {
+    button:hover {
       background: #005bb5;
     }
   </style>
 </head>
 <body>
-  <h1>🇮🇳 Welcome to Indian ChatGPT</h1>
-  <p>Aapka apna AI chatbot jo samjhe aapki bhasha aur jazbaat 🧠💬</p>
-  <button class="btn" onclick="alert('Coming Soon: Hindi + Hinglish + More!')">
-    Start Chatting 🤖
-  </button>
+  <h1>🇮🇳 Indian ChatGPT</h1>
+  <div id="chat-box"></div>
+  <input type="text" id="user-input" placeholder="Apna sawal likhiye..." />
+  <br>
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const userText = input.value.trim();
+      if (userText === "") return;
+
+      addMessage("user", userText);
+      input.value = "";
+
+      // Simple fake AI response
+      setTimeout(() => {
+        const botReply = getBotReply(userText);
+        addMessage("bot", botReply);
+      }, 500);
+    }
+
+    function addMessage(sender, text) {
+      const div = document.createElement("div");
+      div.className = "message";
+      div.innerHTML = `<span class="${sender}">${sender === 'user' ? '🧑‍💻 You' : '🤖 Bot'}:</span> ${text}`;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getBotReply(input) {
+      // Hinglish smart replies (you can modify/add more)
+      const responses = {
+        "hello": "Namaste! Kaise ho? 😊",
+        "kaun ho tum": "Main ek Indian AI hoon, aapki madad ke liye.",
+        "kya kar sakte ho": "Main general questions ka answer de sakta hoon, try karke dekho!",
+        "bye": "Alvida! Phir milenge. 🙏"
+      };
+
+      input = input.toLowerCase();
+      for (let key in responses) {
+        if (input.includes(key)) return responses[key];
+      }
+
+      return "Mujhe samajh nahi aaya, lekin main seekh raha hoon! 😊";
+    }
+  </script>
 </body>
 </html>
